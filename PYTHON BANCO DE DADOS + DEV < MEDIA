@@ -1,0 +1,71 @@
+import sqlite3
+
+# Conectando ao banco
+conexao = sqlite3.connect('alunos.db')
+cursor = conexao.cursor()
+
+# Criando a tabela se não existir
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS alunos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    nota1 REAL,
+    nota2 REAL,
+    nota3 REAL,
+    media REAL,
+    situacao TEXT
+)
+''')
+
+def calcular_media_e_situacao():
+    nome = input("Digite o nome do aluno (ou 'sair' para encerrar): ")
+    if nome.lower() == 'sair':
+        return False  # para parar o loop
+
+    try:
+        nota1 = float(input("Digite a primeira nota: "))
+        nota2 = float(input("Digite a segunda nota: "))
+        nota3 = float(input("Digite a terceira nota: "))
+    except ValueError:
+        print(" Digite apenas números válidos nas notas.")
+        return True
+
+    media = (nota1 + nota2 + nota3) / 3
+
+    # Determinando a situação
+    if media >= 7:
+        situacao = "Aprovado"
+    elif media >= 5:
+        situacao = "Recuperação"
+    else:
+        situacao = "Reprovado"
+
+    print(f"\nAluno: {nome}")
+    print(f"Média: {media:.2f}")
+    print(f"Situação: {situacao}\n")
+
+    # Salvando no banco
+    cursor.execute('''
+        INSERT INTO alunos (nome, nota1, nota2, nota3, media, situacao)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', (nome, nota1, nota2, nota3, media, situacao))
+    conexao.commit()
+
+    return True  # continuar o loop
+
+# Loop principal
+while True:
+    continuar = calcular_media_e_situacao()
+    if not continuar:
+        break
+
+# Mostrando todos os alunos cadastrados
+cursor.execute("SELECT * FROM alunos")
+alunos = cursor.fetchall()
+
+print("\n--- Todos os alunos cadastrados ---")
+for aluno in alunos:
+    print(f"Nome: {aluno[1]}, Média: {aluno[5]:.2f}, Situação: {aluno[6]}")
+
+# Fechando a conexão
+conexao.close()
