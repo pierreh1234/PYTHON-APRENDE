@@ -128,14 +128,48 @@ canal_duolingo = canalEmpresarial("Duolingo","Melhores videos de idiomas", 2000)
 
 
 
-Video_poo = Video("Python Objetos","Aprenda agora")
-veido_discordpy = Video("Discord.py","Aprenda agora a criar um bot")
+# Video_poo = Video("Python Objetos","Aprenda agora")
+# veido_discordpy = Video("Discord.py","Aprenda agora a criar um bot")
 
-canal_pierre.postar_video(Video_poo)
-canal_pierre.postar_video(veido_discordpy)
-print(canal_pierre.videos)
+# canal_pierre.postar_video(Video_poo)
+# canal_pierre.postar_video(veido_discordpy)
+# print(canal_pierre.videos)
 
-playlist_programacao = playlist("Programação")
-playlist_programacao.adicionar_video(Video_poo)
-playlist_programacao.adicionar_video(veido_discordpy)
-playlist_programacao.listar_videos()
+# playlist_programacao = playlist("Programação")
+# playlist_programacao.adicionar_video(Video_poo)
+# playlist_programacao.adicionar_video(veido_discordpy)
+# playlist_programacao.listar_videos()
+
+
+
+"""----------------------------------------------------------"""
+
+
+"""praticar de oop"""
+
+
+class Vendedor:
+    def __init__(self, nome):
+        self.vendas = 0
+        self.nome = nome
+               
+    def vendeu(self, vendas):
+        self.vendas = vendas
+        
+    def meta(self, meta):
+        if self.vendas >= meta:
+            print(f"{self.nome} bateu a meta!")
+        else:
+            print(f"{self.nome} nao bateu a meta.")
+            
+            
+vendedor1 = Vendedor("Carlos")
+vendedor1.vendeu(1500)
+vendedor1.meta(1000)
+
+vendedor2 = Vendedor("Ana")
+vendedor2.vendeu(800)
+vendedor2.meta(1000)
+
+
+        
