@@ -394,7 +394,7 @@ class StudyApp:
             return
         
         api_key = self.api_key_var.get().strip()
-        if not api_key or api_key == "SUA_API_KEY_AQUI" or api_key == "AIzaSyDSBms7w7RwhX7Pt-2R0-2bMTdATPzqh1o":
+        if not api_key or api_key == "SUA_API_KEY_AQUI" or api_key == "Sua chave aqui":
             messagebox.showwarning("API Key", 
                 "Configure sua API Key do Google Gemini!\n\n"
                 "A chave no código é apenas um exemplo.\n"
