@@ -21,7 +21,7 @@ if os.path.exists(TESSERACT_PATH):
     pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
 
 
-GEMINI_API_KEY = "AIzaSyAPv4TvUFgSATKmR6cVjCwgD41AmD8bKM8"  
+GEMINI_API_KEY = "Sua chave do gmini aqui"  
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
 
 class RegionSelector:
